@@ -31,6 +31,7 @@ object Versions {
     const val NAV_ARGS = "2.3.0"
     const val FLOWBINDING_VERSION = "1.0.0-alpha02"
     const val JSON_SERIALIZATION = "1.0.1"
+    const val APOLLO_VERSION = "2.4.5"
 
 }
 
@@ -66,6 +67,7 @@ object FlowBindingUI {
     const val FLOWBINDING_VIEWPAGER2 = "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:${Versions.FLOWBINDING_VERSION}"
 
 }
+
 object Datastore {
     const val DATASTORE ="androidx.datastore:datastore-preferences:${Versions.DATASTORE_VERSION}"
 }
@@ -98,6 +100,10 @@ object NetLibs {
 
     const val SERIALIZATION_ADAPTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
 
+    object GraphQLApollo{
+        const val APOLLO_RUNTIME = "com.apollographql.apollo:apollo-runtime:${Versions.APOLLO_VERSION}"
+        const val APOLLO_COROUTINE_SUPPORT = "com.apollographql.apollo:apollo-coroutines-support:${Versions.APOLLO_VERSION}"
+    }
 }
 
 

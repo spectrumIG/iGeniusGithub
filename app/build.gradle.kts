@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-android")
+    id("com.apollographql.apollo").version(Versions.APOLLO_VERSION)
 }
 
 
@@ -47,7 +48,13 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
+
+    apollo {
+        generateKotlinModels.set(true)
+    }
+
 }
+
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20")
@@ -95,6 +102,8 @@ dependencies {
     implementation(FlowBindingUI.FLOWBINDING_VIEWPAGER2)
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(NetLibs.GraphQLApollo.APOLLO_RUNTIME)
+    implementation(NetLibs.GraphQLApollo.APOLLO_COROUTINE_SUPPORT)
 
 
 //    kapt(DILibs.DAGGER_ANDROID_PROCESSOR)
