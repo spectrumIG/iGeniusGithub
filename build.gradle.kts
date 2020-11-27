@@ -4,11 +4,11 @@ plugins {
     id("com.android.application") version BuildPluginsVersion.AGP apply false
     id("com.android.library") version BuildPluginsVersion.AGP apply false
     kotlin("android") version BuildPluginsVersion.KOTLIN apply false
+    kotlin("jvm") version BuildPluginsVersion.KOTLIN
+    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
-    kotlin("jvm") version BuildPluginsVersion.KOTLIN
-    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
 }
 
 allprojects {
@@ -62,10 +62,6 @@ subprojects {
         }
     }
 }
-
-//tasks.register("clean", Delete::class.java) {
-//    delete(rootProject.buildDir)
-//}
 
 tasks.withType<DependencyUpdatesTask> {
     rejectVersionIf {

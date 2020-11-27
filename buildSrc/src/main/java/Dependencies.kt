@@ -27,10 +27,10 @@ object Versions {
     const val MATERIAL = "1.3.0-alpha04"
     const val RECYCLER = "1.1.0"
     const val RECYCLER_SELECTION = "1.1.0-rc01"
-    const val KOTLIN_SERIALIZATION_PLUGIN = "1.4.20"
     const val PERMISSIONS_VER = "2.0.1"
     const val NAV_ARGS = "2.3.0"
     const val FLOWBINDING_VERSION = "1.0.0-alpha02"
+    const val JSON_SERIALIZATION = "1.0.1"
 
 }
 
@@ -40,7 +40,7 @@ object BuildPluginsVersion {
     const val KOTLIN = "1.4.20"
     const val KTLINT = "9.2.1"
     const val VERSIONS_PLUGIN = "0.28.0"
-    const val SERIALIZATION = "1.4.20"
+    const val SERIALIZATION = KOTLIN
 
 }
 
@@ -86,7 +86,6 @@ object Navigation {
 
 object DILibs {
     const val DAGGER_ANDROID ="com.google.dagger:dagger-android:${Versions.DAGGER}"
-//    const val DAGGER_ANDROID_PROCESSOR ="com.google.dagger:dagger-android-processor:${Versions.DAGGER}"
     const val DAGGER_ANDROID_COMPILER ="com.google.dagger:dagger-compiler:${Versions.DAGGER}"
 }
 
@@ -94,8 +93,11 @@ object NetLibs {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
     const val OKHTTP_LOGGIN_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
-    const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.KOTLIN_SERIALIZATION_PLUGIN}"
+
+    const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.JSON_SERIALIZATION}"
+
     const val SERIALIZATION_ADAPTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
+
 }
 
 

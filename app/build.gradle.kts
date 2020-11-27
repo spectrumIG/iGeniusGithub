@@ -2,11 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-//    id("kotlin-android")
-//    id("kotlin-kapt")
-
-//    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-android")
 }
 
 
@@ -43,7 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        dataBinding = true
+//        dataBinding = true
     }
 
     lintOptions {
@@ -71,11 +68,12 @@ dependencies {
     implementation(DILibs.DAGGER_ANDROID)
 //    implementation(DILibs.DAGGER_ANDROID_SUPPORT)
 
+
     implementation(NetLibs.OKHTTP)
     implementation(NetLibs.RETROFIT)
     implementation(NetLibs.OKHTTP_LOGGIN_INTERCEPTOR)
     implementation(NetLibs.SERIALIZATION_ADAPTER)
-//    implementation(NetLibs.KOTLIN_SERIALIZATION)
+    implementation(NetLibs.KOTLIN_SERIALIZATION)
 
     implementation(JetPackKTX.LIVEDATA)
     implementation(JetPackKTX.LIFECYCLESCOPE)
@@ -91,16 +89,13 @@ dependencies {
     implementation(CoreLibs.EAZY_PERMISSIONS)
     implementation(CoilImageLib.COIL)
 
-//    implementation(RoomLib.ROOM)
-//    implementation(RoomLib.ROOM_KTX)
-
     implementation(FlowBindingUI.FLOWBINDING_CORE)
     implementation(FlowBindingUI.FLOWBINDING_BASE)
     implementation(FlowBindingUI.FLOWBINDING_RECYCLER)
     implementation(FlowBindingUI.FLOWBINDING_VIEWPAGER2)
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-//    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+
 
 //    kapt(DILibs.DAGGER_ANDROID_PROCESSOR)
     kapt(DILibs.DAGGER_ANDROID_COMPILER)

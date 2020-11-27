@@ -1,9 +1,10 @@
-package it.playground.igeniusgithub.it.playground.igeniusgithub.di
+package it.playground.igeniusgithub.di
 
 import dagger.Module
 import dagger.Provides
 import it.playground.igeniusgithub.BuildConfig
 import it.playground.igeniusgithub.it.playground.igeniusgithub.domain.network.OAuthApi
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,30 +32,25 @@ object NetworkModule {
 //            .build()
 //    }
 
-//    @Singleton
-//    @Provides
-//    fun provideJsonConfiguration(): Json {
-//        return  Json(
-//            JsonConfiguration(
-//                encodeDefaults = false,
-//                ignoreUnknownKeys = true,
-//                isLenient = false,
-//                serializeSpecialFloatingPointValues = false,
-//                allowStructuredMapKeys = false,
-//                prettyPrint = true,
-//                unquotedPrint = false,
-//                indent = "",
-//                useArrayPolymorphism = false,
-//                classDiscriminator = "",
-//                updateMode = UpdateMode.OVERWRITE
-//            )
-//        )
-//    }
+    @Singleton
+    @Provides
+    fun provideJsonConfiguration(): Json {
+        return Json {
+            encodeDefaults = false
+            ignoreUnknownKeys = true
+            isLenient = false
+            allowStructuredMapKeys = false
+            prettyPrint = true
+            useArrayPolymorphism = false
+            classDiscriminator = ""
+
+        }
+    }
 
     @Singleton
     @Provides
     fun provideApi(retrofit: Retrofit): OAuthApi {
-        return retrofit.create(OAuthApi::class.java)
+        return retrofit.create(OAuthApi::class.java) //It might actually not be needed
     }
 
     @Singleton
