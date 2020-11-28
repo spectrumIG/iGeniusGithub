@@ -1,11 +1,15 @@
 package it.playground.igeniusgithub.di
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import it.playground.igeniusgithub.BuildConfig
-import it.playground.igeniusgithub.it.playground.igeniusgithub.domain.network.OAuthApi
+import it.playground.igeniusgithub.di.NetworkModule.BaseUrl.BASE_LOGIN_POST_ACCESS_TOKEN
+import it.playground.igeniusgithub.domain.network.OAuthApi
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,21 +20,9 @@ object NetworkModule {
 
     object BaseUrl {
         val BASE_GRAPHQL_URL = "https://api.github.com/graphql"
-        val BASE_LOGIN_AUTHORIZE = "https://github.com/login/oauth/authorize"
-        val BASE_LOGIN_POST_ACCESS_TOKEN = "https://github.com/login/oauth/access_token"
+        val BASE_LOGIN_POST_ACCESS_TOKEN = "https://github.com/login/oauth/"
 
     }
-
-//    @Singleton
-//    @Provides
-//    fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
-//        val contentType = "application/json"
-//        return Retrofit.Builder()
-//            .addConverterFactory(json.asConverterFactory(MediaType.get(contentType)))
-//            .baseUrl(BaseUrl.getUrl())
-//            .client(okHttpClient)
-//            .build()
-//    }
 
     @Singleton
     @Provides
@@ -47,10 +39,22 @@ object NetworkModule {
         }
     }
 
+    @ExperimentalSerializationApi
+    @Singleton
+    @Provides
+    fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
+        val contentType = "application/json"
+        return Retrofit.Builder()
+            .addConverterFactory(json.asConverterFactory(contentType.toMediaType()))
+            .baseUrl(BASE_LOGIN_POST_ACCESS_TOKEN)
+            .client(okHttpClient)
+            .build()
+    }
+
     @Singleton
     @Provides
     fun provideApi(retrofit: Retrofit): OAuthApi {
-        return retrofit.create(OAuthApi::class.java) //It might actually not be needed
+        return retrofit.create(OAuthApi::class.java)
     }
 
     @Singleton

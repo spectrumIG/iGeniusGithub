@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import it.playground.igeniusgithub.GithubApplication
+import it.playground.igeniusgithub.login.LoginGithubActivity
 import javax.inject.Singleton
 
 /**
@@ -19,6 +20,8 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(application: GithubApplication)
+
+    fun inject(activity: LoginGithubActivity)
 
     @Component.Factory
     interface Factory {
