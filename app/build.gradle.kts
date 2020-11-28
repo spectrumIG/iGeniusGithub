@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+//    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-android")
     id("com.apollographql.apollo").version(Versions.APOLLO_VERSION)
