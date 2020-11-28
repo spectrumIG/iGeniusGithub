@@ -11,15 +11,44 @@ import dagger.Module
 import dagger.Provides
 import it.playground.igeniusgithub.BuildConfig
 import it.playground.igeniusgithub.domain.model.usecase.UseCase
+import it.playground.igeniusgithub.domain.network.OAuthApi
+import it.playground.igeniusgithub.domain.repository.DataSource
+import it.playground.igeniusgithub.domain.repository.DefaultRepository
+import it.playground.igeniusgithub.domain.repository.Repository
+import it.playground.igeniusgithub.domain.repository.local.LocalDataSource
+import it.playground.igeniusgithub.domain.repository.remote.RemoteDataSource
 import it.playground.igeniusgithub.login.LoginUseCase
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
-@Module(includes = [CoreModule.UseCaseModule::class])
+@Module(includes = [CoreModule.UseCaseModule::class, CoreModule.RepositoryBinds::class])
 object CoreModule {
+
+    @Qualifier
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class TokenRemoteDataSource
+
+    @Qualifier
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class TokenLocalDataSource
+
+    @Singleton
+    @TokenRemoteDataSource
+    @Provides
+    fun provideTasksRemoteDataSource(restapi: OAuthApi): DataSource {
+        return RemoteDataSource(restapi)
+    }
+
+    @Singleton
+    @TokenLocalDataSource
+    @Provides
+    fun provideTasksLocalDataSource(preferences: DataStore<Preferences>): DataSource {
+        return LocalDataSource(preferences)
+    }
 
     @Singleton
     @Provides
-    fun providesEncriptedSharedPref(context: Context): DataStore<Preferences> {
+    fun providesPrefDataStoreSharedPref(context: Context): DataStore<Preferences> {
         return context.createDataStore(name = "GithubPref")
     }
 
@@ -33,8 +62,8 @@ object CoreModule {
     }
 
     @Provides
-    fun provideLoginUseCase(): UseCase {
-        return LoginUseCase()
+    fun provideLoginUseCase(repository: Repository): UseCase {
+        return LoginUseCase(repository)
     }
 
     @Module
@@ -43,6 +72,13 @@ object CoreModule {
         @Binds
         abstract fun bindLoginUseCase(loginUseCase: LoginUseCase): UseCase
     }
+
+    @Module
+    abstract class RepositoryBinds {
+
+        @Singleton
+        @Binds
+        abstract fun bindRepository(repo: DefaultRepository): Repository
 
 //    @Module
 //    abstract class LoginActivityModule {
@@ -77,4 +113,5 @@ object CoreModule {
 //    }
 
 
+    }
 }

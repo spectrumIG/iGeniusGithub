@@ -35,7 +35,7 @@ class LoginGithubActivity : AppCompatActivity(R.layout.activity_login_github) {
                 try {
                     if(url.contains("?code=")) {
                         val code = url.substring(url.lastIndexOf("?code=") + 1).split("=").toTypedArray()[1]
-//                        fetchOauthTokenWithCode(cleanToken[0])
+                        loginViewModel.retrieveAndSaveOAuthTokenForApi(code)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -48,7 +48,13 @@ class LoginGithubActivity : AppCompatActivity(R.layout.activity_login_github) {
         loginViewModel.url.observe(this, { result ->
             loginWebview.loadUrl(result)
         })
+        loginViewModel.authCodeSuccessful.observe(this, { success ->
+            if(success) {
 
+            }else{
+
+            }
+        })
 
     }
 }
