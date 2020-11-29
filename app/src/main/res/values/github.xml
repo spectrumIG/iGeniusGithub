@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login_url" translatable="false">"https://github.com/login/oauth/authorize?client_id=%1$s&amp;scope=repo,user"</string>
+    <string name="login_url" translatable="false">"https://github.com/login/oauth/authorize?client_id=%1$s&amp;scope=user,public_repo,repo,repo_deployment,repo:status,read:repo_hook,read:org,read:public_key,read:gpg_key"</string>
 
     <string name="client_id" translatable="false">0bb73a8caba3850b3752</string>
     <string name="client_secret" translatable="false">b71db9779fc722007cc6837819c56aa887957289</string>

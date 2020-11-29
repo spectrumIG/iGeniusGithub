@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
 //    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-android")
@@ -82,6 +83,7 @@ dependencies {
     implementation(NetLibs.OKHTTP_LOGGIN_INTERCEPTOR)
     implementation(NetLibs.SERIALIZATION_ADAPTER)
     implementation(NetLibs.KOTLIN_SERIALIZATION)
+//    implementation(NetLibs.KOTLIN_SERIALIZATION_RUNTIME)
 
     implementation(JetPackKTX.LIVEDATA)
     implementation(JetPackKTX.LIFECYCLESCOPE)

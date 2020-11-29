@@ -97,6 +97,7 @@ object NetLibs {
     const val OKHTTP_LOGGIN_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
 
     const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.JSON_SERIALIZATION}"
+//    const val KOTLIN_SERIALIZATION_RUNTIME = "kotlinx-serialization-runtime${Versions.JSON_SERIALIZATION}"
 
     const val SERIALIZATION_ADAPTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
 
