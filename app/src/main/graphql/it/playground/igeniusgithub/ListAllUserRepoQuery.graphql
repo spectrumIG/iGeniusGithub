@@ -1,9 +1,9 @@
 query ListAllUserRepoQuery{
   viewer {
-    repositories(first: 50 {
+    repositories(first: 50) {
       totalCount
       nodes {
-        nameWithOwner,
+        name,
         languages(first: 1){
           nodes{
             name
