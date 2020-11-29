@@ -80,38 +80,5 @@ object CoreModule {
         @Binds
         abstract fun bindRepository(repo: DefaultRepository): Repository
 
-//    @Module
-//    abstract class LoginActivityModule {
-//
-//        @ContributesAndroidInjector
-//        internal abstract fun loginActivity(): LoginGithubActivity
-////
-//        @ContributesAndroidInjector
-//        internal abstract fun splashFragment(): SplashFragment
-//
-//        @ContributesAndroidInjector
-//        internal abstract fun permissionFragment(): PermissionRequestFragment
-//    }
-//
-//    @Module
-//    abstract class WelcomeModule {
-//        @ContributesAndroidInjector
-//        internal abstract fun welcomeFragment(): WelcomeFullscreenFragment
-//    }
-//
-//    @Module
-//    abstract class JoinModule {
-//        @ContributesAndroidInjector
-//        internal abstract fun joinFragment(): JoinConfFragment
-//
-//    }
-//
-//    @Module
-//    abstract class LoginModule {
-//        @ContributesAndroidInjector
-//        internal abstract fun loginFragment(): LoginFragment
-//    }
-
-
     }
 }

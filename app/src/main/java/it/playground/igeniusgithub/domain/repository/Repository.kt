@@ -3,6 +3,7 @@ package it.playground.igeniusgithub.domain.repository
 import it.playground.igeniusgithub.di.CoreModule
 import it.playground.igeniusgithub.domain.model.Result
 import it.playground.igeniusgithub.domain.repository.local.LocalDataSource
+import timber.log.Timber
 import javax.inject.Inject
 
 interface Repository {
@@ -15,18 +16,19 @@ class DefaultRepository @Inject constructor(
 ) : Repository{
 
     override suspend fun retrieveTokenAndStoreIt(clientId:String,clientSecret:String,code: String): Result<String> {
-        val askForToken = localDataSource.askForToken(clientId, clientSecret, code)
-        return if(askForToken is Result.Error) {
 
-            val remoteAsk = remoteDataSource.askForToken(clientId, clientSecret, code)
+        var askedToken = localDataSource.askForToken(clientId, clientSecret, code)
 
-            if(remoteAsk.succeded){
-                (localDataSource as LocalDataSource).saveTokenLocally((remoteAsk as Result.Success).data)
+        if(askedToken is Result.Error) {
+
+            askedToken = remoteDataSource.askForToken(clientId, clientSecret, code)
+
+            if(askedToken.succeded){
+                (localDataSource as LocalDataSource).saveTokenLocally((askedToken as Result.Success).data)
             }
-            remoteAsk
-        }else{
-            askForToken
+            Timber.i("CODE: FOR GRAPHQL $askedToken")
         }
+        return askedToken
     }
 
 }

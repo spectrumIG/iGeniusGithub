@@ -1,12 +1,14 @@
 package it.playground.igeniusgithub.login
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import it.playground.igeniusgithub.GithubApplication
+import it.playground.igeniusgithub.MainActivity
 import it.playground.igeniusgithub.R
 import it.playground.igeniusgithub.databinding.ActivityLoginGithubBinding
 import it.playground.igeniusgithub.di.viewModels
@@ -34,7 +36,7 @@ class LoginGithubActivity : AppCompatActivity(R.layout.activity_login_github) {
                 val url = request!!.url.toString()
                 try {
                     if(url.contains("?code=")) {
-                        val code = url.substring(url.lastIndexOf("?code=") + 1).split("=").toTypedArray()[1]
+                        val code = extractCodeFromUrl(url)
                         loginViewModel.retrieveAndSaveOAuthTokenForApi(code)
                     }
                 } catch (e: Exception) {
@@ -48,13 +50,13 @@ class LoginGithubActivity : AppCompatActivity(R.layout.activity_login_github) {
         loginViewModel.url.observe(this, { result ->
             loginWebview.loadUrl(result)
         })
+
         loginViewModel.authCodeSuccessful.observe(this, { success ->
             if(success) {
-
-            }else{
-
+                startActivity(Intent(this, MainActivity::class.java))
             }
         })
-
     }
+
+    private fun extractCodeFromUrl(url: String) = url.substring(url.lastIndexOf("?code=") + 1).split("=").toTypedArray()[1]
 }

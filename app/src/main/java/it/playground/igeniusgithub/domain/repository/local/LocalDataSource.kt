@@ -14,9 +14,9 @@ class LocalDataSource constructor(private val prefData: DataStore<Preferences>) 
 
     override suspend fun askForToken(clientId: String, clientSecret: String, code: String): Result<String> {
         val result = prefData.data.map {
-            val token = it[preferencesKey]
-            if(token.toString().isNotEmpty()) {
-                Result.Success(token.toString())
+            val token = it[preferencesKey] ?: ""
+            if(token.isNotEmpty()) {
+                Result.Success(token)
             } else {
                 Result.Error(Exception("no suitable token"))
             }
@@ -27,7 +27,7 @@ class LocalDataSource constructor(private val prefData: DataStore<Preferences>) 
 
     suspend fun saveTokenLocally(code: String) {
         prefData.edit { settings ->
-            settings.set(preferencesKey,code)
+            settings[preferencesKey] = code
         }
     }
 }
