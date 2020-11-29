@@ -1,0 +1,20 @@
+query ListAllUserRepoQuery{
+  viewer {
+    repositories(first: 50 {
+      totalCount
+      nodes {
+        nameWithOwner,
+        languages(first: 1){
+          nodes{
+            name
+          }
+        }
+        description
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
