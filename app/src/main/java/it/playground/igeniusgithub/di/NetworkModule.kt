@@ -1,9 +1,11 @@
 package it.playground.igeniusgithub.di
 
+import com.apollographql.apollo.ApolloClient
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import it.playground.igeniusgithub.BuildConfig
+import it.playground.igeniusgithub.di.NetworkModule.BaseUrl.BASE_GRAPHQL_URL
 import it.playground.igeniusgithub.di.NetworkModule.BaseUrl.BASE_LOGIN_POST_ACCESS_TOKEN
 import it.playground.igeniusgithub.domain.network.OAuthApi
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -38,6 +40,7 @@ object NetworkModule {
 
         }
     }
+
 
     @ExperimentalSerializationApi
     @Singleton
@@ -82,5 +85,13 @@ object NetworkModule {
         }
         interceptors.add(loggingInterceptor)
         return interceptors
+    }
+
+    @Singleton
+    @Provides
+    fun provideApolloClient(): ApolloClient{
+        return ApolloClient.builder()
+            .serverUrl(BASE_GRAPHQL_URL)
+            .build()
     }
 }
