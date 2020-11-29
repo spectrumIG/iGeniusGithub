@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IGeniusGithub"
         >
-        <activity android:name=".login.LoginGithubActivity">
+        <activity android:name=".login.LoginGithubActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

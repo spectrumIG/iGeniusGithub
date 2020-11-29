@@ -75,7 +75,6 @@ dependencies {
     implementation(Datastore.DATASTORE)
 
     implementation(DILibs.DAGGER_ANDROID)
-//    implementation(DILibs.DAGGER_ANDROID_SUPPORT)
 
 
     implementation(NetLibs.OKHTTP)
@@ -83,7 +82,6 @@ dependencies {
     implementation(NetLibs.OKHTTP_LOGGIN_INTERCEPTOR)
     implementation(NetLibs.SERIALIZATION_ADAPTER)
     implementation(NetLibs.KOTLIN_SERIALIZATION)
-//    implementation(NetLibs.KOTLIN_SERIALIZATION_RUNTIME)
 
     implementation(JetPackKTX.LIVEDATA)
     implementation(JetPackKTX.LIFECYCLESCOPE)
