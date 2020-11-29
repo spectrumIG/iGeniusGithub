@@ -1,56 +1,17 @@
 package it.playground.igeniusgithub.di
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.createDataStore
 import coil.ImageLoader
 import coil.util.DebugLogger
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import it.playground.igeniusgithub.BuildConfig
-import it.playground.igeniusgithub.domain.model.usecase.UseCase
-import it.playground.igeniusgithub.domain.network.OAuthApi
-import it.playground.igeniusgithub.domain.repository.DataSource
-import it.playground.igeniusgithub.domain.repository.DefaultRepository
-import it.playground.igeniusgithub.domain.repository.Repository
-import it.playground.igeniusgithub.domain.repository.local.LocalDataSource
-import it.playground.igeniusgithub.domain.repository.remote.RemoteDataSource
-import it.playground.igeniusgithub.login.LoginUseCase
+import it.playground.igeniusgithub.R
 import javax.inject.Qualifier
-import javax.inject.Singleton
 
-@Module(includes = [CoreModule.UseCaseModule::class, CoreModule.RepositoryBinds::class])
+@Module
 object CoreModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.RUNTIME)
-    annotation class TokenRemoteDataSource
-
-    @Qualifier
-    @Retention(AnnotationRetention.RUNTIME)
-    annotation class TokenLocalDataSource
-
-    @Singleton
-    @TokenRemoteDataSource
-    @Provides
-    fun provideTasksRemoteDataSource(restapi: OAuthApi): DataSource {
-        return RemoteDataSource(restapi)
-    }
-
-    @Singleton
-    @TokenLocalDataSource
-    @Provides
-    fun provideTasksLocalDataSource(preferences: DataStore<Preferences>): DataSource {
-        return LocalDataSource(preferences)
-    }
-
-    @Singleton
-    @Provides
-    fun providesPrefDataStoreSharedPref(context: Context): DataStore<Preferences> {
-        return context.createDataStore(name = "GithubPref")
-    }
 
     @Provides
     fun provideCoilImageLoader(context: Context): ImageLoader {
@@ -61,24 +22,35 @@ object CoreModule {
         }
     }
 
+    @Qualifier
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class ClientId
+
+    @Qualifier
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class ClientSecret
+
+    @Qualifier
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class LoginUrlTemplate
+
+
+    @ClientId
     @Provides
-    fun provideLoginUseCase(repository: Repository): UseCase {
-        return LoginUseCase(repository)
+    fun provideCLientIdString(context: Context): String {
+        return context.getString(R.string.client_id)
     }
 
-    @Module
-    abstract class UseCaseModule {
-
-        @Binds
-        abstract fun bindLoginUseCase(loginUseCase: LoginUseCase): UseCase
+    @ClientSecret
+    @Provides
+    fun provideCLientSecretString(context: Context): String {
+        return context.getString(R.string.client_secret)
     }
 
-    @Module
-    abstract class RepositoryBinds {
-
-        @Singleton
-        @Binds
-        abstract fun bindRepository(repo: DefaultRepository): Repository
-
+    @LoginUrlTemplate
+    @Provides
+    fun provideFullLoginUrlWithTemplateString(context: Context): String {
+        return context.getString(R.string.login_url)
     }
+
 }

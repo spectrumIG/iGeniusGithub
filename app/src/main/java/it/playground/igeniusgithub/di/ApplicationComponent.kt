@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * */
 
 
-@Component(modules = [CoreModule::class, NetworkModule::class])
+@Component(modules = [CoreModule::class, NetworkModule::class,DatastoringModule::class])
 @Singleton
 interface ApplicationComponent {
 
