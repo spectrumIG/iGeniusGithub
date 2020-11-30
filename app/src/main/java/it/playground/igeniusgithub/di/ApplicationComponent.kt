@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import it.playground.igeniusgithub.GithubApplication
+import it.playground.igeniusgithub.home.HomeFragment
 import it.playground.igeniusgithub.login.LoginGithubActivity
 import javax.inject.Singleton
 
@@ -22,6 +23,8 @@ interface ApplicationComponent {
     fun inject(application: GithubApplication)
 
     fun inject(activity: LoginGithubActivity)
+
+    fun inject(homeFragment: HomeFragment)
 
     @Component.Factory
     interface Factory {
