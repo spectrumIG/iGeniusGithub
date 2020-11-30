@@ -4,7 +4,8 @@ query ListAllUserRepoQuery{
       totalCount
       nodes {
         name,
-        languages(first: 1){
+        stargazerCount,
+        languages(first: 10){
           nodes{
             name
           }
