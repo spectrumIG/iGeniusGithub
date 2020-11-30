@@ -8,4 +8,5 @@ import it.playground.igeniusgithub.domain.model.Result
 
 interface DataSource {
     suspend fun askForToken(clientId:String?,clientSecret:String?,code: String?): Result<String>
+    suspend fun saveTokenLocally(code: String)
 }

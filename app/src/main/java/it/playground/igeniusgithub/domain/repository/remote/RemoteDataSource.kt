@@ -14,4 +14,8 @@ class RemoteDataSource constructor(private val restApi: OAuthApi) : DataSource {
             Result.Error(Exception(login.errorBody().toString()))
         }
     }
+
+    override suspend fun saveTokenLocally(code: String) {
+        TODO("unused")
+    }
 }

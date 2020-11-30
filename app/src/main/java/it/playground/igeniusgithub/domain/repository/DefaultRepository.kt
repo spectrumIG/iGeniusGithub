@@ -7,7 +7,6 @@ import it.playground.igeniusgithub.ListAllUserRepoQuery
 import it.playground.igeniusgithub.di.DatastoringModule.TokenLocalDataSource
 import it.playground.igeniusgithub.di.DatastoringModule.TokenRemoteDataSource
 import it.playground.igeniusgithub.domain.model.Result
-import it.playground.igeniusgithub.domain.repository.local.LocalDataSource
 import kotlinx.coroutines.flow.Flow
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -29,7 +28,7 @@ class DefaultRepository @Inject constructor(
             askedToken = remoteDataSource.askForToken(clientId, clientSecret, code)
 
             if(askedToken.succeded) {
-                (localDataSource as LocalDataSource).saveTokenLocally((askedToken as Result.Success).data)
+                localDataSource.saveTokenLocally((askedToken as Result.Success).data)
             }
         }
         return askedToken

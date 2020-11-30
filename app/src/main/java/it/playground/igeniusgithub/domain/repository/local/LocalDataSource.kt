@@ -29,7 +29,7 @@ class LocalDataSource constructor(private val prefData: DataStore<Preferences>) 
         return result.first()
     }
 
-    suspend fun saveTokenLocally(code: String) {
+    override suspend fun saveTokenLocally(code: String) {
         prefData.storeValue(_authTokenKey, code)
     }
 }
