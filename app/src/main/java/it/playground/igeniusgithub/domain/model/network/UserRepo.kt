@@ -10,7 +10,7 @@ data class UserRepo(
     val languages: List<String>?,
     val name: String?,
     val starsNumber: Int?
-)
+) : DomainModelData
 
 data class UserRepoUI(
     val repositoryName: String,
