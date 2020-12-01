@@ -1,5 +1,8 @@
 package it.playground.igeniusgithub.di
 
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.navigation.Navigator
 import com.apollographql.apollo.ApolloClient
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -8,6 +11,7 @@ import it.playground.igeniusgithub.BuildConfig
 import it.playground.igeniusgithub.di.NetworkModule.BaseUrl.BASE_GRAPHQL_URL
 import it.playground.igeniusgithub.di.NetworkModule.BaseUrl.BASE_LOGIN_POST_ACCESS_TOKEN
 import it.playground.igeniusgithub.domain.network.OAuthApi
+import it.playground.igeniusgithub.domain.network.OkHttpGraphInterceptor
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -73,18 +77,24 @@ object NetworkModule {
         return clientBuilder.build()
     }
 
+    @Provides
+    fun provideSharedPref(context: Context): SharedPreferences {
+        return context.getSharedPreferences("AuthTokenSharedPref", Context.MODE_PRIVATE)
+
+    }
 
     @Singleton
     @Named("GraphQLInstance")
     @Provides
-    fun provideGraphQLOkHttpClient(interceptors: ArrayList<Interceptor>): OkHttpClient.Builder {
+    fun provideGraphQLOkHttpClient(interceptors: ArrayList<Interceptor>, preferences: SharedPreferences): OkHttpClient {
         val clientBuilder = OkHttpClient.Builder()
+        clientBuilder.addInterceptor(OkHttpGraphInterceptor(preferences.getString("auth_token", "")!!, preferences)) //<- Ugly but necessary
+
         interceptors.forEach {
             clientBuilder.addInterceptor(it)
         }
-        return clientBuilder
+        return clientBuilder.build()
     }
-
 
     @Singleton
     @Provides
@@ -104,8 +114,9 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApolloClient(): ApolloClient.Builder {
-        return ApolloClient.builder().serverUrl(BASE_GRAPHQL_URL)
+    fun provideApolloClient(@Named("GraphQLInstance") okHttpClient: OkHttpClient): ApolloClient{
+        return ApolloClient.builder().okHttpClient(okHttpClient).serverUrl(BASE_GRAPHQL_URL).build()
 
     }
+
 }

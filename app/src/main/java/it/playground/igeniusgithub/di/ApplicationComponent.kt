@@ -7,6 +7,7 @@ import dagger.Component
 import it.playground.igeniusgithub.GithubApplication
 import it.playground.igeniusgithub.home.HomeFragment
 import it.playground.igeniusgithub.login.LoginGithubActivity
+import it.playground.igeniusgithub.search.SearchFragment
 import javax.inject.Singleton
 
 /**
@@ -25,6 +26,8 @@ interface ApplicationComponent {
     fun inject(activity: LoginGithubActivity)
 
     fun inject(homeFragment: HomeFragment)
+
+    fun inject(searchFragment: SearchFragment)
 
     @Component.Factory
     interface Factory {
