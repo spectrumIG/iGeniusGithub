@@ -1,31 +1,19 @@
-query SearchForUser($filter: String!){
- search(query:$filter, type:USER, first:100){
-  edges{
-    node{
-      ...User
-    }
-  }
-
-}
-}
-fragment User on User{
-    avatarUrl
-    login
-    repositories(first: 100) {
-      nodes {
-        name,
-        stargazerCount,
-        languages(first: 10){
-          nodes{
-            name
-          }
+query SearchForUser($filter: String!) {
+  search(query: $filter, type: USER, first: 20) {
+    nodes {
+      ... on User {
+        id
+        email
+        avatarUrl
+        bio
+        followers {
+          totalCount
         }
-        description
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
+        following {
+          totalCount
+        }
+        login
       }
     }
-
   }
+}
