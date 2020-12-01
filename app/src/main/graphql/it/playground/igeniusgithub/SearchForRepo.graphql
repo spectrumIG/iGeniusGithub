@@ -1,0 +1,23 @@
+query SearchForRepo($filter: String!) {
+  search(query: $filter, type: REPOSITORY, first: 100) {
+    repositoryCount
+    edges {
+      node {
+        ... on Repository {
+         name
+  			stargazerCount
+  			languages(first: 10) {
+    		nodes {
+     			 name
+   			 }
+ 				 }
+  			description
+          owner{
+            avatarUrl
+            login
+          }
+        }
+      }
+    }
+  }
+}

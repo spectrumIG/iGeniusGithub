@@ -1,0 +1,31 @@
+query SearchForUser($filter: String!){
+ search(query:$filter, type:USER, first:100){
+  edges{
+    node{
+      ...User
+    }
+  }
+
+}
+}
+fragment User on User{
+    avatarUrl
+    login
+    repositories(first: 100) {
+      nodes {
+        name,
+        stargazerCount,
+        languages(first: 10){
+          nodes{
+            name
+          }
+        }
+        description
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+
+  }
