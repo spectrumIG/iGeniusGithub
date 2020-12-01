@@ -16,10 +16,6 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     val userRepo: LiveData<Result<List<UserRepoUI>>>
         get() = _userRepo
 
-//    private val _showErrorInRerieving = MutableLiveData<Boolean>().apply { value = false }
-//    val showErrorInRetrieving: LiveData<Boolean>
-//        get() = _showErrorInRerieving
-
     @ExperimentalCoroutinesApi
     fun retrieveData() {
         viewModelScope.launch {

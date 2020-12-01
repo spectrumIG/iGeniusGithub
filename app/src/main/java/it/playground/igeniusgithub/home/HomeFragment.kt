@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import it.playground.igeniusgithub.GithubApplication
 import it.playground.igeniusgithub.R
+import it.playground.igeniusgithub.databinding.FragmentHomeBinding
 import it.playground.igeniusgithub.di.viewModels
 import it.playground.igeniusgithub.domain.model.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,11 +28,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity().application as GithubApplication).component.inject(this)
-
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-
-        return root
+        val bind = FragmentHomeBinding.inflate(inflater, container, false)
+        return bind.root
     }
 
     @ExperimentalCoroutinesApi

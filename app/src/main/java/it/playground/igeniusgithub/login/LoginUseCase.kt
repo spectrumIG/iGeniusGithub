@@ -1,8 +1,5 @@
 package it.playground.igeniusgithub.login
 
-import android.content.Context
-import it.playground.igeniusgithub.R
-import it.playground.igeniusgithub.di.CoreModule
 import it.playground.igeniusgithub.di.CoreModule.ClientId
 import it.playground.igeniusgithub.di.CoreModule.ClientSecret
 import it.playground.igeniusgithub.di.CoreModule.LoginUrlTemplate

@@ -18,7 +18,7 @@ class HomeUseCase @Inject constructor(private val defaultRepository: Repository)
     suspend fun getAllUserRepo(): Result<List<UserRepo>> {
         val result = ArrayList<UserRepo>()
         return try {
-            defaultRepository.retrieveUserRepositories().map {
+            defaultRepository.retrieveLoggedUserRepositories().map {
                 it.data?.viewer?.repositories?.nodes?.forEach { repo ->
                     val languages = ArrayList<String>()
 
