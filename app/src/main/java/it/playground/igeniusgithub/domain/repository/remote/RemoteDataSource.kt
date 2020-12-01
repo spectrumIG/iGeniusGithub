@@ -15,7 +15,5 @@ class RemoteDataSource constructor(private val restApi: OAuthApi) : DataSource {
         }
     }
 
-    override suspend fun saveTokenLocally(code: String) {
-        TODO("unused")
-    }
+    override suspend fun saveTokenLocally(code: String) {}
 }
