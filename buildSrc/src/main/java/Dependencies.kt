@@ -31,7 +31,7 @@ object Versions {
     const val NAV_ARGS = "2.3.0"
     const val FLOWBINDING_VERSION = "1.0.0-alpha02"
     const val JSON_SERIALIZATION = "1.0.1"
-    const val APOLLO_VERSION = "2.4.5"
+    const val APOLLO_VERSION = "2.4.6"
 
 }
 
@@ -97,7 +97,6 @@ object NetLibs {
     const val OKHTTP_LOGGIN_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
 
     const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.JSON_SERIALIZATION}"
-//    const val KOTLIN_SERIALIZATION_RUNTIME = "kotlinx-serialization-runtime${Versions.JSON_SERIALIZATION}"
 
     const val SERIALIZATION_ADAPTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
 
