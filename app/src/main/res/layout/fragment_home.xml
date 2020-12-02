@@ -6,19 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeFragment"
     >
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/user_repo_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_repo_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/component_label_horizontal_margin"
+
+        />
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/empty_or_error_data_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MyTheme.Headline4"
         android:textSize="20sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:text="Errore nel recupero dati"
+        tools:visibility="visible"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
