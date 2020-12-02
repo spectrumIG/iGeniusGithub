@@ -14,14 +14,14 @@ data class UserRepo(
 
 data class UserRepoUI(
     val repositoryName: String,
-    val languages: List<String>?,
+    val languages: String?,
     val description: String?,
     val starsNumber: Int
 ) : UiData
 
 class UserRepoMapper: Mapper<UserRepo,UserRepoUI>{
     override fun mapFrom(from: UserRepo): UserRepoUI {
-        return UserRepoUI(repositoryName = from.name!!,languages = from.languages,description = from.description,starsNumber = from.starsNumber ?: 0)
+        return UserRepoUI(repositoryName = from.name!!,languages = from.languages?.joinToString(),description = from.description,starsNumber = from.starsNumber?: 0)
     }
 
 }
