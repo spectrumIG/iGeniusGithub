@@ -43,7 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
-//        dataBinding = true
+        dataBinding = true
     }
 
     lintOptions {
@@ -71,6 +71,7 @@ dependencies {
     implementation(CoreLibs.MATERIAL_UI_LIB)
     implementation(CoreLibs.RECYCLER_VIEW)
     implementation(CoreLibs.RECYCLER_VIEW_SELECTION)
+    implementation(CoreLibs.ANDROID_SWIPE_REFRESH)
 
     implementation(Datastore.DATASTORE)
 

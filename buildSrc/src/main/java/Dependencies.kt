@@ -32,6 +32,7 @@ object Versions {
     const val FLOWBINDING_VERSION = "1.0.0-alpha02"
     const val JSON_SERIALIZATION = "1.0.1"
     const val APOLLO_VERSION = "2.4.6"
+    const val SWIPE_REFRESH_LAYOUT = "1.1.0"
 
 }
 
@@ -52,6 +53,7 @@ object CoreLibs {
     const val ANDROIDX_NAV_RUNTIME_KTX = "androidx.navigation:navigation-runtime-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
+    const val ANDROID_SWIPE_REFRESH ="androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_REFRESH_LAYOUT}"
 
     const val TIMBER_LIB = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val MATERIAL_UI_LIB = "com.google.android.material:material:${Versions.MATERIAL}"
