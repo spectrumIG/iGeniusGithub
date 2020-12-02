@@ -4,28 +4,42 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import it.playground.igeniusgithub.GithubApplication
 import it.playground.igeniusgithub.R
+import it.playground.igeniusgithub.databinding.FragmentSearchBinding
+import it.playground.igeniusgithub.di.viewModels
+import kotlinx.coroutines.InternalCoroutinesApi
+import javax.inject.Inject
+import javax.inject.Provider
 
 class SearchFragment : Fragment() {
 
-    private lateinit var searchViewModel: SearchViewModel
+    @Inject
+    lateinit var viewModelProvider: Provider<SearchViewModel>
+
+    private val searchViewModel by viewModels { viewModelProvider }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        searchViewModel =
-            ViewModelProvider(this).get(SearchViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        searchViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        (requireActivity().application as GithubApplication).component.inject(this)
+
+        val bind = FragmentSearchBinding.inflate(inflater,container,false)
+
+        return bind.root
     }
+
+    @InternalCoroutinesApi
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        searchViewModel.searchRepoFor("test")
+        searchViewModel.searchUserFor("test")
+    }
+
+
 }
