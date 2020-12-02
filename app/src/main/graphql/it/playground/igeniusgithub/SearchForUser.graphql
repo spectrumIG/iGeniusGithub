@@ -1,19 +1,31 @@
 query SearchForUser($filter: String!) {
   search(query: $filter, type: USER, first: 20) {
     nodes {
-      ... on User {
-        id
-        email
-        avatarUrl
-        bio
-        followers {
-          totalCount
-        }
-        following {
-          totalCount
-        }
-        login
-      }
+         ... on User {
+            id
+            email
+            avatarUrl
+            bio
+            login
+            followers {
+              totalCount
+            }
+            following {
+              totalCount
+            }
+            repositories(orderBy: {field: CREATED_AT, direction: ASC}) {
+              totalCount
+              nodes {
+                name
+                languages {
+                  nodes {
+                    name
+                  }
+                }
+                description
+              }
+            }
+          }
     }
   }
 }
