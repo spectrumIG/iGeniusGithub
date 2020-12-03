@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -74,7 +76,8 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.BaseViewHolder>() {
 
 
             setOnClickListener {
-                // TODO: Handle on click
+                val bundle = bundleOf("repoDetail" to item)
+                itemView.findNavController().navigate(R.id.fromSearchToDetail,bundle)
             }
         }
     }
@@ -99,7 +102,8 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.BaseViewHolder>() {
 
 
             setOnClickListener {
-                // TODO: Handle on click
+                val bundle = bundleOf("userDetail" to item)
+                itemView.findNavController().navigate(R.id.fromSearchToDetail,bundle)
             }
         }
     }

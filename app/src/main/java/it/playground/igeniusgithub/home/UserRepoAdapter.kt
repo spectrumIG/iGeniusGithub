@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import it.playground.igeniusgithub.R
 import it.playground.igeniusgithub.domain.model.network.UserRepoUI
@@ -42,11 +44,11 @@ class UserRepoAdapter : RecyclerView.Adapter<UserRepoAdapter.UserRepoViewHolder>
             repoDescription.text = item.description
             repoLanguages.text = item.languages
 
-            // TODO: Bind the data with View
+
             setOnClickListener {
 
-                // TODO: go to detail repo
-
+                val bundle = bundleOf("userRepo" to item)
+                itemView.findNavController().navigate(R.id.fromHomeToDetail,bundle)
 
             }
         }

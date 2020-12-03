@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
-    android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/cards_material_default_margin"
     android:elevation="15dp"
+    android:padding="10dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/label"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
 
         <ImageView
@@ -49,11 +49,10 @@
             />
         <TextView
             android:id="@+id/repo_languages"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:singleLine="true"
             android:textAppearance="?attr/textAppearanceOverline"
             android:textColor="@color/material_on_surface_emphasis_medium"
             android:textStyle="bold"
@@ -61,7 +60,7 @@
             app:layout_constraintEnd_toEndOf="@+id/repo_title_name"
             app:layout_constraintStart_toEndOf="@+id/repo_description"
             app:layout_constraintTop_toBottomOf="@+id/repo_title_name"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.07999998"
             tools:text="Python, Java, C++"
             />
 

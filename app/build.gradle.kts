@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
-//    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
+    id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-android")
     id("com.apollographql.apollo").version(Versions.APOLLO_VERSION)
@@ -43,7 +43,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 
     lintOptions {
@@ -57,10 +56,8 @@ android {
 
 }
 
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20")
-
 
     implementation(CoreLibs.ANDROIDX_APPCOMPAT)
     implementation(CoreLibs.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -76,7 +73,6 @@ dependencies {
     implementation(Datastore.DATASTORE)
 
     implementation(DILibs.DAGGER_ANDROID)
-
 
     implementation(NetLibs.OKHTTP)
     implementation(NetLibs.RETROFIT)
@@ -106,15 +102,12 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(NetLibs.GraphQLApollo.APOLLO_RUNTIME)
     implementation(NetLibs.GraphQLApollo.APOLLO_COROUTINE_SUPPORT)
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
-
-//    kapt(DILibs.DAGGER_ANDROID_PROCESSOR)
     kapt(DILibs.DAGGER_ANDROID_COMPILER)
 
-//    kapt(RoomLib.ROOM_COMPILER)
-
     testImplementation(TestingLib.JUNIT)
-//    testImplementation(TestingLib.ROOM_TESTING)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)

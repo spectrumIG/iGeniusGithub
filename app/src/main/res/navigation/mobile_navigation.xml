@@ -9,13 +9,43 @@
         android:id="@+id/navigation_home"
         android:name="it.playground.igeniusgithub.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/fromHomeToDetail"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="it.playground.igeniusgithub.search.SearchFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/fromSearchToDetail"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="it.playground.igeniusgithub.detail.DetailFragment"
+        android:label="Details"
+        tools:layout="@layout/detail_fragment">
+        <argument
+            android:name="RepositoryUser"
+            app:argType="it.playground.igeniusgithub.domain.model.network.UserRepoUI"
+            app:nullable="true" />
+        <argument
+            android:name="Repository"
+            app:argType="it.playground.igeniusgithub.domain.model.network.SearchRepositoryUI"
+            app:nullable="true" />
+        <argument
+            android:name="UserDetail"
+            app:argType="it.playground.igeniusgithub.domain.model.network.SearchUserUI"
+            app:nullable="true" />
+    </fragment>
 
 
 </navigation>

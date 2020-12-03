@@ -1,7 +1,9 @@
 package it.playground.igeniusgithub.domain.model.network
 
 
+import android.os.Parcelable
 import it.playground.igeniusgithub.domain.model.Mapper
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,12 +14,13 @@ data class UserRepo(
     val starsNumber: Int?
 ) : DomainModelData
 
+@Parcelize
 data class UserRepoUI(
     val repositoryName: String,
     val languages: String?,
     val description: String?,
     val starsNumber: Int
-) : UiData
+) : UiData, Parcelable
 
 class UserRepoMapper: Mapper<UserRepo,UserRepoUI>{
     override fun mapFrom(from: UserRepo): UserRepoUI {
