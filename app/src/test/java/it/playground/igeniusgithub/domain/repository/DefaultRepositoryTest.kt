@@ -13,7 +13,8 @@ import org.junit.Test
 class DefaultRepositoryTest {
     private val fakeRemoteDataSource = FakeRemoteDataSource()
     private val fakeLocalDataSource = FakeLocalDataSource()
-    private val defaultRepository = DefaultRepository(fakeRemoteDataSource, fakeLocalDataSource, ApolloClient.builder(), OkHttpClient.Builder())
+    private val apolloClient = ApolloClient.builder().build()
+    private val defaultRepository = DefaultRepository(fakeRemoteDataSource, fakeLocalDataSource,apolloClient)
 
 
     @Test
