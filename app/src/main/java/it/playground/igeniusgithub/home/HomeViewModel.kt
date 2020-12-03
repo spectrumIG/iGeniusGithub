@@ -20,7 +20,8 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     fun retrieveData() {
         viewModelScope.launch {
             when (val allUserRepo = homeUseCase.getAllUserRepo()) {
-                is Result.Loading -> Result.Loading
+
+                is Result.Loading -> _userRepo.postValue(Result.Loading)
 
                 is Result.Error -> _userRepo.postValue(Result.Error(allUserRepo.exception))
 

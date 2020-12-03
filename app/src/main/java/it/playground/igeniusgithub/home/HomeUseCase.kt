@@ -11,9 +11,6 @@ import javax.inject.Inject
 
 class HomeUseCase @Inject constructor(private val defaultRepository: Repository) : UseCase {
 
-    @ExperimentalCoroutinesApi
-    override suspend fun invoke() {
-    }
 
     suspend fun getAllUserRepo(): Result<List<UserRepo>> {
         val result = ArrayList<UserRepo>()
