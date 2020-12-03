@@ -19,9 +19,6 @@ class LoginUseCase @Inject constructor(
         return String.format(loginTemplateUrl, clientId)
     }
 
-    override suspend fun invoke() {
-
-    }
 
     suspend fun retrieveAndSaveToken(code: String): Boolean {
         val retrieveTokenAndStoreIt =
